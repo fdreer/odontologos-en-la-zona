@@ -1,8 +1,7 @@
-import {useContext, useMemo, useState} from 'react'
+import {useState} from 'react'
 import {Card, ListCards} from '../UI/Cards'
 import {isInStorage, saveFav} from '../logic/storage'
 import {Link} from 'react-router-dom'
-import {DentistsContext} from '../contexts/DentistsContext'
 
 export function ListOfDentists({dentists}) {
   return (
@@ -11,33 +10,6 @@ export function ListOfDentists({dentists}) {
         <section style={{margin: '30px 0'}}>
           <ListCards>
             {dentists.map(dentist => {
-              return (
-                <Card key={dentist.id}>
-                  <DentistInfo dentist={dentist} />
-                </Card>
-              )
-            })}
-          </ListCards>
-        </section>
-      )}
-    </>
-  )
-}
-
-export function ListOfFavs() {
-  const dentistsContext = useContext(DentistsContext).dentists
-
-  const dentistsFavs = useMemo(() => {
-    console.log('useMemo')
-    return dentistsContext.filter(dentist => isInStorage(dentist.id))
-  }, [dentistsContext])
-
-  return (
-    <>
-      {dentistsFavs && (
-        <section style={{margin: '30px 0'}}>
-          <ListCards>
-            {dentistsFavs.map(dentist => {
               return (
                 <Card key={dentist.id}>
                   <DentistInfo dentist={dentist} />
@@ -65,18 +37,28 @@ export function DentistInfo({dentist}) {
 
   return (
     <>
+      <section
+        style={{
+          gap: '10px',
+          display: 'flex',
+          alignItems: 'center',
+          position: 'absolute',
+          right: '10px',
+          top: '10px',
+        }}
+      >
+        <i className={classHeart} onClick={onFav}></i>
+        <Link to={`/dentists/${dentist.id}`}>
+          <i className="fa-solid fa-circle-info more-info link"></i>
+        </Link>
+      </section>
+
       <img
         src="../../src/assets/avatar-default-symbolic-svgrepo-com.svg"
         style={{overflow: 'hidden', width: '80px', height: '80px'}}
       />
-      <h3 style={{margin: '0'}}>{dentist.name}</h3>
-      <p>Ciudad: {dentist.address.city}</p>
-      <section style={{gap: '10px', display: 'flex', alignItems: 'center'}}>
-        <i className={classHeart} onClick={onFav}></i>
-        <Link to={`/dentists/${dentist.id}`}>
-          <i className="fa-solid fa-circle-info more-info"></i>
-        </Link>
-      </section>
+      <h3 style={{margin: '10px 0'}}>{dentist.name}</h3>
+      <p>{dentist.address.city}</p>
     </>
   )
 }

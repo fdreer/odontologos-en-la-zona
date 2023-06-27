@@ -1,13 +1,15 @@
+import styles from './ButtonTheme.module.css'
+
 function ButtonTheme({themeContext}) {
   function changeTheme() {
     themeContext.changeTheme()
   }
 
   return (
-    <label className="ui-switch">
+    <label className={styles['ui-switch']}>
       <input type="checkbox" onClick={changeTheme} />
-      <div className="slider">
-        <div className="circle"></div>
+      <div className={styles['slider']}>
+        <div className={styles['circle']}></div>
       </div>
     </label>
   )

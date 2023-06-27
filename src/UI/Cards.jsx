@@ -9,10 +9,12 @@ export const Card = styled.li`
   box-shadow: inset 0px 0px 21px 15px rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
 
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  /* gap: 10px; */
 `
 
 export const ListCards = styled.ul`

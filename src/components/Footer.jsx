@@ -1,4 +1,4 @@
-function Footer(params) {
+function Footer() {
   return (
     <footer
       style={{
@@ -9,7 +9,7 @@ function Footer(params) {
         padding: '1rem',
       }}
     >
-      FRONT III
+      <h4>FRONT III</h4>
     </footer>
   )
 }

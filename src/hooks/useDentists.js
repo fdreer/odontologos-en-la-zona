@@ -10,12 +10,13 @@ function useDentists() {
     async function getData() {
       try {
         setLoading(true)
-        const dentistsData = await searchDentists()
-        setDentists(dentistsData)
+        const timeOut = setTimeout(async () => {
+          const dentistsData = await searchDentists()
+          setDentists(dentistsData)
+          setLoading(false)
+        }, 500)
       } catch (error) {
         setError(true)
-      } finally {
-        setLoading(false)
       }
     }
     getData()

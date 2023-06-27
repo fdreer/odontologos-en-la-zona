@@ -1,6 +1,22 @@
 import {Link} from 'react-router-dom'
 import {styled} from 'styled-components'
-import ButtonTheme from './ButtonTheme'
+import ButtonTheme from './ButtonTheme/ButtonTheme'
+
+const HeaderStyled = styled.ul`
+  padding: 25px;
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #1c1c1c;
+`
+
+const ButtonHeader = styled.ul`
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0 15px;
+`
 
 function Header({themeContext}) {
   return (
@@ -10,38 +26,43 @@ function Header({themeContext}) {
         position: 'fixed',
         top: 0,
         width: '100%',
+        zIndex: '999',
       }}
     >
-      <nav style={{width: '100%'}}>
+      <nav
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          maxWidth: '970px',
+          margin: '0 auto',
+        }}
+      >
         <HeaderStyled>
-          <i
-            className="fa-solid fa-tooth"
-            style={{fontSize: '40px', color: '#fff'}}
-          ></i>
+          <i className="fa-solid fa-tooth tooth"></i>
           <Link className="link" to="/">
-            <li>INICIO</li>
+            <ButtonHeader>
+              <i className="fa-solid fa-house"></i>
+              <span>HOME</span>
+            </ButtonHeader>
           </Link>
           <Link className="link" to="/favoritos">
-            <li>FAVORITOS</li>
+            <ButtonHeader>
+              <i className="fa-solid fa-heart"></i>
+              <span>FAVORITOS</span>
+            </ButtonHeader>
           </Link>
           <Link className="link" to="/contacto">
-            <li>CONTACTO</li>
+            <ButtonHeader>
+              <i className="fa-solid fa-address-book"></i>
+              <span>CONTACTO</span>
+            </ButtonHeader>
           </Link>
-          <ButtonTheme themeContext={themeContext} />
         </HeaderStyled>
+        <ButtonTheme themeContext={themeContext} />
       </nav>
     </header>
   )
 }
 
-export const HeaderStyled = styled.ul`
-  padding: 30px;
-  width: 50%;
-  margin: 0 auto;
-  list-style-type: none;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  background-color: #1c1c1c;
-`
 export default Header
