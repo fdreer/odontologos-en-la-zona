@@ -4,17 +4,17 @@ export const Card = styled.li`
   width: 200px;
   height: 280px;
   padding: 20px;
-  border: 2px solid rgb(83, 91, 242);
-  border-radius: 1rem;
-  box-shadow: inset 0px 0px 21px 15px rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
-
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* gap: 10px; */
+
+  background-color: #fff;
+  color: #242424;
+  border: #242424 2px solid;
+  box-shadow: 9px 9px 0px -3px rgba(0, 0, 0, 0.9);
 `
 
 export const ListCards = styled.ul`

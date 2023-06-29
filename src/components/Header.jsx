@@ -11,11 +11,11 @@ const HeaderStyled = styled.ul`
   background-color: #1c1c1c;
 `
 
-const ButtonHeader = styled.ul`
+const ButtonHeader = styled.section`
   display: flex;
   align-items: center;
-  gap: 7px;
-  margin: 0 15px;
+  gap: 5px;
+  margin: 0 20px;
 `
 
 function Header({themeContext}) {
@@ -33,7 +33,7 @@ function Header({themeContext}) {
         style={{
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'space-between',
+          justifyContent: 'space-around',
           maxWidth: '970px',
           margin: '0 auto',
         }}

@@ -1,5 +1,4 @@
-async function searchDentists() {
-  const endpoint = 'https://jsonplaceholder.typicode.com/users'
+async function searchDentists({endpoint}) {
   try {
     const res = await fetch(endpoint)
 

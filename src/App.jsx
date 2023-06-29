@@ -6,6 +6,8 @@ import {useContext} from 'react'
 import {ThemeContext} from './contexts/ThemeContext'
 import Home from './routes/Home'
 import Favs from './routes/Favs'
+import ContactPage from './routes/ContactPage'
+import {DentistsDetails} from './components/Dentists'
 
 function App() {
   const themeContext = useContext(ThemeContext)
@@ -27,8 +29,8 @@ function App() {
           index: true,
           element: <Home />,
         },
-        // {path: 'dentists/:id', element: <DentistsDetails />},
-        {path: 'contacto', element: <h1>Contacto form</h1>},
+        {path: 'dentists/:id', element: <DentistsDetails />},
+        {path: 'contacto', element: <ContactPage />},
         {
           path: 'favoritos',
           element: <Favs />,

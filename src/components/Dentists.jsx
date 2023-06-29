@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import {Card, ListCards} from '../UI/Cards'
 import {isInStorage, saveFav} from '../logic/storage'
-import {Link} from 'react-router-dom'
+import {Link, useParams} from 'react-router-dom'
 
 export function ListOfDentists({dentists}) {
   return (
@@ -31,8 +31,8 @@ export function DentistInfo({dentist}) {
     : 'heart fa-solid fa-heart'
 
   const onFav = () => {
-    saveFav(dentist)
-    setIsFav(!isFav)
+    saveFav(dentist) // guarda el dentista en el localstorage
+    setIsFav(!isFav) // cambia el estado de isFav
   }
 
   return (
@@ -63,14 +63,13 @@ export function DentistInfo({dentist}) {
   )
 }
 
-// export function DentistsDetails() {
-//   const dentists = useContext(DentistsContext).dentists
-//   const params = useParams()
-//   const [dentist, setDentist] = useState()
+export function DentistsDetails() {
+  const params = useParams()
+  const [dentist, setDentist] = useState()
 
-//   // useEffect(() => {
-//   //   setDentist(dentists.find(dentist => dentist.id === params.id))
-//   // }, [params])
+  // useEffect(() => {
+  //   setDentist(newDentist)
+  // }, [])
 
-//   return <>{dentist && <DentistInfo dentist={dentist} />}</>
-// }
+  return <>{dentist && <DentistInfo dentist={dentist} />}</>
+}

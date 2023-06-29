@@ -1,6 +1,7 @@
 #root {
   text-align: center;
   background-color: #242424;
+  box-sizing: border-box;
 }
 
 .dark {
@@ -30,7 +31,7 @@
   padding: 7px;
   font-size: 20px;
   border-radius: 100%;
-  background-color: #333;
+  background-color: #242424;
 }
 
 .tooth {
@@ -49,7 +50,7 @@
 .heart {
   padding: 7px;
   border-radius: 100%;
-  background-color: #333;
+  background-color: #242424;
 
   font-size: 20px;
   cursor: pointer;
@@ -62,4 +63,72 @@
 
 .fav {
   color: #d62e2e;
+}
+
+/* FORM STYLES */
+.card-form {
+  margin: 0 auto;
+  background-color: #fff;
+  border: #242424 2px solid;
+  box-shadow: 9px 9px 0px -3px rgba(0, 0, 0, 0.85);
+  width: 370px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+  color: #242424;
+}
+
+.form {
+  margin-top: 20px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.group {
+  position: relative;
+  width: 100%;
+}
+
+.form .group input,
+.form .group textarea {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+  outline: 0;
+  width: 100%;
+  background-color: transparent;
+  color: #242424;
+}
+
+.form .group input:focus,
+.form .group textarea:focus {
+  border-color: #3366cc;
+}
+
+.form .group textarea {
+  resize: none;
+  height: 100px;
+}
+
+.hidden {
+  display: none;
+}
+
+.error-exclamation {
+  color: #d62e2e;
+  position: absolute;
+  right: -25px;
+  top: 8px;
+  font-size: 20px;
 }

@@ -9,7 +9,7 @@ function Footer() {
         padding: '1rem',
       }}
     >
-      <h4>FRONT III</h4>
+      <h4>AL CUIDADO DE LA SONRISA</h4>
     </footer>
   )
 }

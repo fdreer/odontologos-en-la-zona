@@ -33,6 +33,7 @@ export const getFavs = () => {
   return JSON.parse(localStorage.getItem('favs'))
 }
 
+// Verifica si el dentista esta en favoritos
 export const isInStorage = id => {
   if (localStorage.getItem('favs') === null) {
     return false

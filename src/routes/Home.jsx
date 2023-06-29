@@ -1,12 +1,12 @@
-import {useContext} from 'react'
 import useDentists from '../hooks/useDentists'
 import {ListOfDentists} from '../components/Dentists'
-import {DentistsContext} from '../contexts/DentistsContext'
 import LoadingSpinner from '../UI/LoadingSpinner'
+import {API_USERS} from '../constants/API'
 
 function Home() {
-  const {loading} = useDentists()
-  const dentists = useContext(DentistsContext).dentists
+  const {dentists, loading} = useDentists({
+    endpoint: API_USERS,
+  })
 
   return (
     <>
@@ -14,7 +14,7 @@ function Home() {
         <LoadingSpinner />
       ) : (
         <>
-          <h2 style={{fontSize: '2rem'}}>DENTISTAS EN LA ZONA 😈🔥</h2>
+          <h2 style={{fontSize: '1.8rem'}}>DENTISTAS EN LA ZONA 😈🔥</h2>
           <ListOfDentists dentists={dentists} />
         </>
       )}

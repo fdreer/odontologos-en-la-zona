@@ -9,6 +9,7 @@ const LoadingSpinner = styled.button`
   border-top-color: #fff;
   border-bottom-color: #fff;
   animation: spinner3 800ms ease infinite;
+  margin: 0 auto;
 
   @keyframes spinner3 {
     to {
