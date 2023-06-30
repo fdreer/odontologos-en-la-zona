@@ -2,9 +2,11 @@ import {Toaster, toast} from 'react-hot-toast'
 import useForm from '../hooks/useForm'
 import SendButton from './SendButton/SendButton'
 
-const notify = () => toast.success('Te estaremos contactando :)')
-
 function FormContact() {
+  const notify = () =>
+    toast.success(
+      `Gracias ${values.nameAndLastName.toLocaleUpperCase()}, te contactaremos cuando antes vía mail :)`
+    )
   const {values, errors, validateForm, setValues} = useForm({notify})
 
   const handleSubmit = e => {

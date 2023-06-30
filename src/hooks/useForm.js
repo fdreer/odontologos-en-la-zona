@@ -16,10 +16,13 @@ function useForm({notify}) {
   const validateForm = () => {
     let newErrors = {nameAndLastName: false, email: false, comment: false}
 
-    const regexNombre = /^[\p{L}]+(?: [\p{L}]+)?$/u
+    const regexNombre = /^[\p{L}]{5,}(?: [\p{L}]+)?$/u
     const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 
-    if (!regexNombre.test(values.nameAndLastName)) {
+    if (
+      values.nameAndLastName < 5 ||
+      !regexNombre.test(values.nameAndLastName)
+    ) {
       newErrors = {...newErrors, nameAndLastName: true}
     } else {
       newErrors = {...newErrors, nameAndLastName: false}
@@ -51,7 +54,7 @@ function useForm({notify}) {
     }
 
     if (hasErrors()) {
-      console.log('Tiene errores')
+      // Tiene errores
       return
     } else {
       notify()
