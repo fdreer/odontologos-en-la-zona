@@ -1,6 +1,7 @@
 import {Card, ListCards} from '../UI/Cards'
-import {Link, useParams} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import useFavs from '../hooks/useFavs'
+import userAvatar from '../assets/avatar-default-symbolic-svgrepo-com.svg'
 
 export function ListOfDentists({dentists}) {
   return (
@@ -37,7 +38,7 @@ export function DentistCard({dentist}) {
           <i className="fa-solid fa-circle-info more-info link"></i>
         </Link>
       </section>
-      <img src="../../src/assets/avatar-default-symbolic-svgrepo-com.svg" />
+      <img src={userAvatar} />
       <h3>{dentist.name}</h3>
       <p>{dentist.website}</p>
     </>
@@ -54,7 +55,7 @@ export function BoxDetails({dentist}) {
   return (
     <>
       <div style={{display: 'flex', alignItems: 'center', marginLeft: '15px'}}>
-        <img src="../../src/assets/avatar-default-symbolic-svgrepo-com.svg" />
+        <img src={userAvatar} />
         <h3>{dentist.name}</h3>
         <section
           style={{
