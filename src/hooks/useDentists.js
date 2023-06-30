@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import {useState} from 'react'
 import searchDentists from '../service/dentists'
 import data from '../mocks/dentists.json'
 
@@ -7,24 +7,28 @@ function useDentists({endpoint}) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
 
-  useEffect(() => {
-    async function getData() {
-      try {
-        setLoading(true)
-        // el timeout de 500ms sirve para mostrar el spinner durante la consulta
-        const timeOut = setTimeout(async () => {
-          const dentistsData = await searchDentists({endpoint})
-          console.log('Fetched data')
-          setDentists(dentistsData)
-          setLoading(false)
-        }, 500)
-      } catch (error) {
-        setError(true)
-      }
-    }
-    getData()
-  }, [])
+  async function getData() {
+    try {
+      setLoading(true)
 
-  return {dentists, loading, error}
+      const dentistsData = await getDataWithDelay(500)
+      setDentists(dentistsData)
+      setLoading(false)
+    } catch (error) {
+      setError(true)
+    }
+  }
+
+  async function getDataWithDelay(ms) {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        // resolve(data[0]) // mock para more-info
+        // resolve(data) // mock para home
+        resolve(searchDentists({endpoint})) // fetch api
+      }, ms)
+    })
+  }
+
+  return {dentists, loading, getData}
 }
 export default useDentists

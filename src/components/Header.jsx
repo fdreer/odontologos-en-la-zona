@@ -20,24 +20,8 @@ const ButtonHeader = styled.section`
 
 function Header({themeContext}) {
   return (
-    <header
-      style={{
-        backgroundColor: '#1c1c1c',
-        position: 'fixed',
-        top: 0,
-        width: '100%',
-        zIndex: '999',
-      }}
-    >
-      <nav
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-around',
-          maxWidth: '970px',
-          margin: '0 auto',
-        }}
-      >
+    <header className="main-header">
+      <nav className="navigation-page">
         <HeaderStyled>
           <i className="fa-solid fa-tooth tooth"></i>
           <Link className="link" to="/">

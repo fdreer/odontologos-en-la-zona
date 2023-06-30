@@ -2,11 +2,16 @@ import useDentists from '../hooks/useDentists'
 import {ListOfDentists} from '../components/Dentists'
 import LoadingSpinner from '../UI/LoadingSpinner'
 import {API_USERS} from '../constants/API'
+import {useEffect} from 'react'
 
 function Home() {
-  const {dentists, loading} = useDentists({
+  const {dentists, loading, getData} = useDentists({
     endpoint: API_USERS,
   })
+
+  useEffect(() => {
+    getData()
+  }, [])
 
   return (
     <>

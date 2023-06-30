@@ -7,7 +7,7 @@ import {ThemeContext} from './contexts/ThemeContext'
 import Home from './routes/Home'
 import Favs from './routes/Favs'
 import ContactPage from './routes/ContactPage'
-import {DentistsDetails} from './components/Dentists'
+import {DentistDetails} from './components/Dentists'
 
 function App() {
   const themeContext = useContext(ThemeContext)
@@ -29,7 +29,7 @@ function App() {
           index: true,
           element: <Home />,
         },
-        {path: 'dentists/:id', element: <DentistsDetails />},
+        {path: 'dentists/:id', element: <DentistDetails />},
         {path: 'contacto', element: <ContactPage />},
         {
           path: 'favoritos',

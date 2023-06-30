@@ -4,6 +4,22 @@
   box-sizing: border-box;
 }
 
+.main-header {
+  background-color: #1c1c1c;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+}
+
+.navigation-page {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  max-width: 970px;
+  margin: 0 auto;
+}
+
 .dark {
   background-color: #242424;
   color: #fff;

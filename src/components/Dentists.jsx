@@ -1,7 +1,10 @@
-import {useState} from 'react'
-import {Card, ListCards} from '../UI/Cards'
-import {isInStorage, saveFav} from '../logic/storage'
+import {useEffect} from 'react'
+import {BoxStyled, Card, ListCards} from '../UI/Cards'
 import {Link, useParams} from 'react-router-dom'
+import useDentists from '../hooks/useDentists'
+import {API_USERS} from '../constants/API'
+import LoadingSpinner from '../UI/LoadingSpinner'
+import useFavs from '../hooks/useFavs'
 
 export function ListOfDentists({dentists}) {
   return (
@@ -12,7 +15,7 @@ export function ListOfDentists({dentists}) {
             {dentists.map(dentist => {
               return (
                 <Card key={dentist.id}>
-                  <DentistInfo dentist={dentist} />
+                  <DentistCard dentist={dentist} />
                 </Card>
               )
             })}
@@ -23,53 +26,92 @@ export function ListOfDentists({dentists}) {
   )
 }
 
-export function DentistInfo({dentist}) {
-  const [isFav, setIsFav] = useState(isInStorage(dentist.id))
+export function DentistCard({dentist}) {
+  const {isFav, onFav} = useFavs({dentist})
 
   const classHeart = isFav
     ? 'heart fav fa-solid fa-heart'
     : 'heart fa-solid fa-heart'
 
-  const onFav = () => {
-    saveFav(dentist) // guarda el dentista en el localstorage
-    setIsFav(!isFav) // cambia el estado de isFav
-  }
-
   return (
     <>
-      <section
-        style={{
-          gap: '10px',
-          display: 'flex',
-          alignItems: 'center',
-          position: 'absolute',
-          right: '10px',
-          top: '10px',
-        }}
-      >
+      <section className="items-card">
         <i className={classHeart} onClick={onFav}></i>
         <Link to={`/dentists/${dentist.id}`}>
           <i className="fa-solid fa-circle-info more-info link"></i>
         </Link>
       </section>
-
-      <img
-        src="../../src/assets/avatar-default-symbolic-svgrepo-com.svg"
-        style={{overflow: 'hidden', width: '80px', height: '80px'}}
-      />
-      <h3 style={{margin: '10px 0'}}>{dentist.name}</h3>
-      <p>{dentist.address.city}</p>
+      <img src="../../src/assets/avatar-default-symbolic-svgrepo-com.svg" />
+      <h3>{dentist.name}</h3>
+      <p>{dentist.website}</p>
     </>
   )
 }
 
-export function DentistsDetails() {
+export function DentistDetails() {
   const params = useParams()
-  const [dentist, setDentist] = useState()
+  const {dentists, loading, getData} = useDentists({
+    endpoint: `${API_USERS}/${params.id}`,
+  })
 
-  // useEffect(() => {
-  //   setDentist(newDentist)
-  // }, [])
+  useEffect(() => {
+    getData()
+  }, [])
 
-  return <>{dentist && <DentistInfo dentist={dentist} />}</>
+  return (
+    <>
+      {loading ? (
+        <LoadingSpinner />
+      ) : (
+        <section style={{display: 'flex', justifyContent: 'center'}}>
+          <BoxStyled>
+            <BoxDetails dentist={dentists} />
+          </BoxStyled>
+        </section>
+      )}
+    </>
+  )
+}
+
+function BoxDetails({dentist}) {
+  const {isFav, onFav} = useFavs({dentist})
+
+  const classHeart = isFav
+    ? 'heart fav fa-solid fa-heart'
+    : 'heart fa-solid fa-heart'
+
+  return (
+    <>
+      <div style={{display: 'flex', alignItems: 'center', marginLeft: '15px'}}>
+        <img src="../../src/assets/avatar-default-symbolic-svgrepo-com.svg" />
+        <h3>{dentist.name}</h3>
+        <section
+          style={{
+            gap: '10px',
+            display: 'flex',
+            alignItems: 'center',
+            position: 'absolute',
+            right: '20px',
+            top: '20px',
+          }}
+        >
+          <i className={classHeart} onClick={onFav}></i>
+          <Link to={`/dentists/${dentist.id}`}>
+            <i className="fa-solid fa-circle-info more-info link"></i>
+          </Link>
+        </section>
+      </div>
+
+      <div style={{marginLeft: '20px'}}>
+        <p>🌐 {dentist.website}</p>
+        <p>✉️ {dentist.email}</p>
+        <p>☎️ {dentist.phone}</p>
+        <p>
+          📍
+          {dentist.address && dentist.address.street} -{' '}
+          {dentist.address && dentist.address.city}
+        </p>
+      </div>
+    </>
+  )
 }
