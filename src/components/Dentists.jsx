@@ -1,9 +1,5 @@
-import {useEffect} from 'react'
-import {BoxStyled, Card, ListCards} from '../UI/Cards'
+import {Card, ListCards} from '../UI/Cards'
 import {Link, useParams} from 'react-router-dom'
-import useDentists from '../hooks/useDentists'
-import {API_USERS} from '../constants/API'
-import LoadingSpinner from '../UI/LoadingSpinner'
 import useFavs from '../hooks/useFavs'
 
 export function ListOfDentists({dentists}) {
@@ -48,32 +44,7 @@ export function DentistCard({dentist}) {
   )
 }
 
-export function DentistDetails() {
-  const params = useParams()
-  const {dentists, loading, getData} = useDentists({
-    endpoint: `${API_USERS}/${params.id}`,
-  })
-
-  useEffect(() => {
-    getData()
-  }, [])
-
-  return (
-    <>
-      {loading ? (
-        <LoadingSpinner />
-      ) : (
-        <section style={{display: 'flex', justifyContent: 'center'}}>
-          <BoxStyled>
-            <BoxDetails dentist={dentists} />
-          </BoxStyled>
-        </section>
-      )}
-    </>
-  )
-}
-
-function BoxDetails({dentist}) {
+export function BoxDetails({dentist}) {
   const {isFav, onFav} = useFavs({dentist})
 
   const classHeart = isFav
