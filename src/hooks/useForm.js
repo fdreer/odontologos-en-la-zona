@@ -16,7 +16,7 @@ function useForm({notify}) {
   const validateForm = () => {
     let newErrors = {nameAndLastName: false, email: false, comment: false}
 
-    const regexNombre = /^[a-zA-Z]+$/
+    const regexNombre = /^[\p{L}]+(?: [\p{L}]+)?$/u
     const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 
     if (!regexNombre.test(values.nameAndLastName)) {
