@@ -1,13 +1,16 @@
 import {useState} from 'react'
 import {createContext} from 'react'
+import {getThemeFromStorage, saveThemeInStorage} from '../logic/storage'
 
 export const ThemeContext = createContext(ThemeProvider)
 
 export function ThemeProvider({children}) {
-  const [theme, setTheme] = useState('dark')
+  const [theme, setTheme] = useState(getThemeFromStorage)
 
   function changeTheme() {
-    setTheme(theme === 'dark' ? 'light' : 'dark')
+    const newTheme = theme === 'dark' ? 'light' : 'dark'
+    setTheme(newTheme)
+    saveThemeInStorage(newTheme)
   }
 
   const value = {

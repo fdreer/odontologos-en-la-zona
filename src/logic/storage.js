@@ -42,3 +42,14 @@ export const isInStorage = id => {
   const favsDentists = JSON.parse(localStorage.getItem('favs'))
   return favsDentists.some(fav => fav.id === id)
 }
+
+export const getThemeFromStorage = () => {
+  if (localStorage.getItem('theme') === null) {
+    return 'light'
+  }
+  return JSON.parse(localStorage.getItem('theme'))
+}
+
+export const saveThemeInStorage = theme => {
+  localStorage.setItem('theme', JSON.stringify(theme))
+}
