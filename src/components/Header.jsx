@@ -22,8 +22,8 @@ function Header({themeContext}) {
   return (
     <header className="main-header">
       <nav className="navigation-page">
+        <i className="fa-solid fa-tooth tooth"></i>
         <HeaderStyled>
-          <i className="fa-solid fa-tooth tooth"></i>
           <Link className="link" to="/">
             <ButtonHeader>
               <i className="fa-solid fa-house"></i>
