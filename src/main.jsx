@@ -6,7 +6,7 @@ import {BrowserRouter} from 'react-router-dom'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <ThemeProvider>
-    <BrowserRouter>
+    <BrowserRouter basename="/odontologos-en-la-zona">
       <App />
     </BrowserRouter>
   </ThemeProvider>
