@@ -14,7 +14,7 @@ export function DentistDetail() {
 
   useEffect(() => {
     getData()
-  }, [])
+  }, [params.id])
 
   return (
     <>
