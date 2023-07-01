@@ -42,8 +42,6 @@ export const ListCards = styled.ul`
   list-style: none;
   display: grid;
   justify-items: center;
-  align-items: center;
-  align-content: center;
 
   grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
 
@@ -60,7 +58,7 @@ export const BoxStyled = styled.article`
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 40px;
   text-align: left;
 
   background-color: #fff;
@@ -78,6 +76,7 @@ export const BoxStyled = styled.article`
 
   h3 {
     margin-left: 10px;
+    font-size: 24px;
   }
 
   p {
