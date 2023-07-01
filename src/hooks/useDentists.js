@@ -11,6 +11,7 @@ function useDentists({endpoint}) {
     try {
       setLoading(true)
 
+      // Obtengo la data con delay para mostrar el spinner load
       const dentistsData = await getDataWithDelay(500)
       setDentists(dentistsData)
       setLoading(false)
