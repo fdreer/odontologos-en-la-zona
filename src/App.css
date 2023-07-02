@@ -7,28 +7,59 @@
 .main-header {
   background-color: #1c1c1c;
   position: fixed;
-  top: 0;
   width: 100%;
   z-index: 999;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  max-width: 970px;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 86px;
+}
+
+.hidden {
+  display: none;
 }
 
 .navigation-page {
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  max-width: 970px;
-  height: 86px;
-  margin: 0 auto;
+
+  @media (max-width: 767px) {
+    display: none;
+  }
+}
+
+.btn-burger {
+  display: none;
+
+  @media (max-width: 767px) {
+    display: block;
+  }
+}
+
+.burger {
+  font-size: 28px;
+}
+
+.menu-aside {
+  background-color: #3366cc;
 }
 
 .dark {
   background-color: #242424;
   color: #fff;
+  transition: 0.3s all;
 }
 
 .light {
   background-color: #fff;
   color: #242424;
+  transition: 0.3s all;
 }
 
 .link {
@@ -135,10 +166,6 @@
 .form .group textarea {
   resize: none;
   height: 100px;
-}
-
-.hidden {
-  display: none;
 }
 
 .error-exclamation {
